@@ -26,9 +26,9 @@ Where `foo.php` is an existing file in the current working directory.
 How To Build Images
 -------------------
 
-Example:
+Example 1 — manual build:
 
-```
+```sh
 docker build \
     --build-arg IMAGE_TAG=7.4.5 \
     --build-arg PSR12EXT_VERSION=3.0.1 \
@@ -42,4 +42,10 @@ docker build \
 docker push roslov/psr12ext:php-7.4-ext-3.0.1-sl-6.3.3-cs-3.5.5
 docker push roslov/psr12ext:php-7.4-ext-3.0.1
 docker push roslov/psr12ext:php-7.4
+```
+
+Example 2 — build via a build script:
+
+```sh
+./build.sh --psr12ext=3.0.1 --cs=3.5.5 --slevomat=6.3.5
 ```
