@@ -35,7 +35,7 @@ WORKDIR /app
 RUN curl -sS https://getcomposer.org/installer | php -- \
         --filename=composer \
         --install-dir=/usr/local/bin \
-        --version=1.10.5 \
+        --version=2.0.12 \
     && composer clear-cache
 
 # Installs Code Sniffer
