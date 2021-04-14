@@ -82,16 +82,29 @@ do
         echo "Building PHP $PHP_FULL_VERSION images..."
         echo '=============================================================='
         echo ''
-        
+
         docker build \
-            --build-arg IMAGE_TAG=$PHP_FULL_VERSION \
-            --build-arg PSR12EXT_VERSION=$PSR12EXT_VERSION \
-            --build-arg CS_VERSION=$CS_VERSION \
-            --build-arg SLEVOMAT_VERSION=$SLEVOMAT_VERSION \
-            -t $REPO:php-$PHP_SHORT_VERSION-ext-$PSR12EXT_VERSION-sl-$SLEVOMAT_VERSION-cs-$CS_VERSION \
-            -t $REPO:php-$PHP_SHORT_VERSION-ext-$PSR12EXT_VERSION \
-            -t $REPO:php-$PHP_SHORT_VERSION \
+            --build-arg IMAGE_TAG="$PHP_FULL_VERSION" \
+            --build-arg PSR12EXT_VERSION="$PSR12EXT_VERSION" \
+            --build-arg CS_VERSION="$CS_VERSION" \
+            --build-arg SLEVOMAT_VERSION="$SLEVOMAT_VERSION" \
+            -t "$REPO:php-$PHP_SHORT_VERSION-ext-$PSR12EXT_VERSION-sl-$SLEVOMAT_VERSION-cs-$CS_VERSION" \
+            -t "$REPO:php-$PHP_SHORT_VERSION-ext-$PSR12EXT_VERSION" \
+            -t "$REPO:php-$PHP_SHORT_VERSION" \
             .
+
+        echo ''
+        echo '=============================================================='
+        echo "Testing PHP $PHP_FULL_VERSION images..."
+        echo '=============================================================='
+        echo ''
+
+        docker run \
+            --rm -v "${PWD}"/tests:/app \
+            "$REPO:php-$PHP_SHORT_VERSION-ext-$PSR12EXT_VERSION-sl-$SLEVOMAT_VERSION-cs-$CS_VERSION" \
+            phpcs \
+            TestA.php
+        echo 'Tests passed.'
     fi
 done
 
@@ -103,10 +116,10 @@ do
     echo "Pushing PHP $PHP_SHORT_VERSION images..."
     echo '=============================================================='
     echo ''
-    
-    docker push $REPO:php-$PHP_SHORT_VERSION-ext-$PSR12EXT_VERSION-sl-$SLEVOMAT_VERSION-cs-$CS_VERSION
-    docker push $REPO:php-$PHP_SHORT_VERSION-ext-$PSR12EXT_VERSION
-    docker push $REPO:php-$PHP_SHORT_VERSION
+
+    docker push "$REPO:php-$PHP_SHORT_VERSION-ext-$PSR12EXT_VERSION-sl-$SLEVOMAT_VERSION-cs-$CS_VERSION"
+    docker push "$REPO:php-$PHP_SHORT_VERSION-ext-$PSR12EXT_VERSION"
+    docker push "$REPO:php-$PHP_SHORT_VERSION"
 done
 
 echo ''
