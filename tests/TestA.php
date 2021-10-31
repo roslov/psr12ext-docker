@@ -15,6 +15,7 @@ final class TestA
      * Some constant
      */
     public const SOME_CONST = 123;
+
     /**
      * Another constant
      */
