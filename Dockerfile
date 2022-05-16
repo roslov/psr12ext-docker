@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Sets PATHs
-ENV PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH
+ENV PATH=/app:/root/.composer/vendor/bin:$PATH
 
 # Sets the working directory
 WORKDIR /app
@@ -35,7 +35,7 @@ WORKDIR /app
 RUN curl -sS https://getcomposer.org/installer | php -- \
         --filename=composer \
         --install-dir=/usr/local/bin \
-        --version=2.0.12 \
+        --version=2.3.5 \
     && composer clear-cache
 
 # Installs Code Sniffer
