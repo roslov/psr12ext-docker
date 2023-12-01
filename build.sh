@@ -10,7 +10,7 @@ set -e
 # `--repo` — Docker Hub repository to push images to (optional)
 #
 # Example:
-# ./build.sh --psr12ext=3.0.1 --cs=3.5.5 --slevomat=6.3.5
+# ./build.sh --psr12ext=9.0.1 --cs=3.7.2 --slevomat=8.14.1
 
 REPO=roslov/psr12ext
 

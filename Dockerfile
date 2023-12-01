@@ -3,7 +3,7 @@
 #############################################
 
 # Build argument: PHP image tag
-ARG IMAGE_TAG=7.4.5
+ARG IMAGE_TAG=8.2.13
 
 # Base image
 FROM php:$IMAGE_TAG
@@ -12,9 +12,9 @@ FROM php:$IMAGE_TAG
 MAINTAINER Oleksandr Roslov "tr@dupkiller.net"
 
 # Build argument: Package versions
-ARG PSR12EXT_VERSION=3.0.1
-ARG CS_VERSION=^3.5.4
-ARG SLEVOMAT_VERSION=^6.1.5
+ARG PSR12EXT_VERSION=9.0.1
+ARG CS_VERSION=^3.7.2
+ARG SLEVOMAT_VERSION=^8.14.1
 
 # Installs libraries
 ENV DEBIAN_FRONTEND=noninteractive
@@ -35,11 +35,11 @@ WORKDIR /app
 RUN curl -sS https://getcomposer.org/installer | php -- \
         --filename=composer \
         --install-dir=/usr/local/bin \
-        --version=2.3.5 \
+        --version=2.6.5 \
     && composer clear-cache
 
 # Installs Code Sniffer
-RUN composer global require squizlabs/php_codesniffer:$CS_VERSION
+RUN composer global require phpcsstandards/php_codesniffer:$CS_VERSION
 
 # Installs Slevomat coding standard
 RUN composer global require slevomat/coding-standard:$SLEVOMAT_VERSION
