@@ -70,7 +70,7 @@ echo "Slevomat coding standard version: $SLEVOMAT_VERSION"
 echo "Code Sniffer version: $CS_VERSION"
 echo "Docker Hub repository: $REPO"
 
-phpVers=('8.2.13' '8.1.26' '8.0.30' '7.4.33' '7.3.33' '7.2.34')
+phpVers=('8.3.0' '8.2.13' '8.1.26' '8.0.30' '7.4.33' '7.3.33' '7.2.34')
 regexp='([0-9]+\.[0-9]+)\.([0-9]+)'
 for PHP_FULL_VERSION in "${phpVers[@]}"
 do
@@ -108,7 +108,7 @@ do
     fi
 done
 
-phpVers=('8.2' '8.1' '8.0' '7.4' '7.3' '7.2')
+phpVers=('8.3' '8.2' '8.1' '8.0' '7.4' '7.3' '7.2')
 for PHP_SHORT_VERSION in "${phpVers[@]}"
 do
     echo ''
