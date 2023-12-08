@@ -39,7 +39,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
     && composer clear-cache
 
 # Installs Code Sniffer
-RUN composer global require phpcsstandards/php_codesniffer:$CS_VERSION
+RUN composer global require squizlabs/php_codesniffer:$CS_VERSION
 
 # Installs Slevomat coding standard
 RUN composer global require slevomat/coding-standard:$SLEVOMAT_VERSION
