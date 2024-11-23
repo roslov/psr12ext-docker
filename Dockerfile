@@ -3,27 +3,20 @@
 #############################################
 
 # Build argument: PHP image tag
-ARG IMAGE_TAG=8.2.13
+ARG IMAGE_TAG=8.2.26
 
 # Base image
-FROM php:$IMAGE_TAG
-
-# Maintainer
-MAINTAINER Oleksandr Roslov "tr@dupkiller.net"
+FROM php:${IMAGE_TAG}-alpine
 
 # Build argument: Package versions
-ARG PSR12EXT_VERSION=9.0.1
-ARG CS_VERSION=^3.7.2
-ARG SLEVOMAT_VERSION=^8.14.1
+ARG PSR12EXT_VERSION=^11.0.0
+ARG CS_VERSION=^3.11.1
+ARG SLEVOMAT_VERSION=^8.15.0
 
 # Installs libraries
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add --no-cache \
     git \
-    unzip \
-    --no-install-recommends && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    unzip
 
 # Sets PATHs
 ENV PATH=/app:/root/.composer/vendor/bin:$PATH
@@ -32,13 +25,11 @@ ENV PATH=/app:/root/.composer/vendor/bin:$PATH
 WORKDIR /app
 
 # Installs Composer
-RUN curl -sS https://getcomposer.org/installer | php -- \
-        --filename=composer \
-        --install-dir=/usr/local/bin \
-        --version=2.6.5 \
-    && composer clear-cache
+ENV COMPOSER_ALLOW_SUPERUSER=1
+COPY --from=composer:2.8.3 /usr/bin/composer /usr/bin/composer
 
 # Installs Code Sniffer
+RUN composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
 RUN composer global require squizlabs/php_codesniffer:$CS_VERSION
 
 # Installs Slevomat coding standard
