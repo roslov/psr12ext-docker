@@ -34,6 +34,7 @@ final class TestA
         if ($arg1 == self::SOME_CONST || $arg1 == self::ANOTHER_CONST) {
             throw new Exception();
         }
+
         return true;
     }
 }

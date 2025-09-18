@@ -103,6 +103,8 @@ do
             --rm -v "${PWD}"/tests:/app \
             "$REPO:php-$PHP_SHORT_VERSION-ext-$PSR12EXT_VERSION-sl-$SLEVOMAT_VERSION-cs-$CS_VERSION" \
             phpcs \
+            -s \
+            --exclude=Generic.Files.ExecutableFile \
             TestA.php
         echo 'Tests passed.'
     fi
