@@ -105,7 +105,7 @@ do
             phpcs \
             -s \
             --exclude=Generic.Files.ExecutableFile \
-            TestA.php
+            "$PHP_SHORT_VERSION/TestA.php"
         echo 'Tests passed.'
     fi
 done
