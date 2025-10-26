@@ -41,8 +41,8 @@ RUN composer global require slevomat/coding-standard:$SLEVOMAT_VERSION
 # Installs PSR-12 Extended
 RUN composer global require roslov/psr12ext:$PSR12EXT_VERSION
 
-# Adds PSR-12 Extended to the installed standards
-RUN phpcs --config-set installed_paths /root/.composer/vendor/roslov/psr12ext/PSR12Ext/
+# Adds PSR-12 Extended and its version compatible with PhpStorm (available since v13.1.0) to the installed standards
+RUN phpcs --config-set installed_paths /root/.composer/vendor/roslov/psr12ext/PSR12Ext/,/root/.composer/vendor/roslov/psr12ext/PSR12ExtForPhpStorm/
 
 # Sets PSR-12 Extended as default standard
 RUN phpcs --config-set default_standard PSR12Ext
