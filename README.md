@@ -47,5 +47,5 @@ docker push roslov/psr12ext:php-7.4
 Example 2 — build via a build script:
 
 ```sh
-./build.sh --psr12ext=3.0.1 --cs=3.5.5 --slevomat=6.3.5
+./build.sh --psr12ext=14.0.0 --cs=4.0.0 --slevomat=8.24.0
 ```
