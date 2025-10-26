@@ -25,6 +25,7 @@ final class TestA
      * Returns a boolean response.
      *
      * @param string $arg1 Argument 1
+     *
      * @return bool Boolean response
      *
      * @throws Exception
