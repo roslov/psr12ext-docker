@@ -18,6 +18,9 @@ RUN apk update && apk add --no-cache \
     git \
     unzip
 
+# Copies base scripts and configs
+COPY image-files/ /
+
 # Sets PATHs
 ENV PATH=/app:/root/.composer/vendor/bin:$PATH
 
