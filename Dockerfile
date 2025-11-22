@@ -53,5 +53,8 @@ RUN phpcs --config-set colors 1
 # Changes report width
 RUN phpcs --config-set report_width 120
 
+# Sets the target PHP version for PHPCS based on the current PHP version
+RUN phpcs --config-set php_version $(php -r 'echo PHP_VERSION_ID;')
+
 # Checks the code style
 CMD ["phpcs", "."]
